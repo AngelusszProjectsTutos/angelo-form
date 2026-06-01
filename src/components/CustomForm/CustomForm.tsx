@@ -5,19 +5,20 @@ import InputForm from "../CustomInput";
 
 
 
-const CustomForm = () =>{
+const CustomForm = () => {
     const {
         control,
         handleSubmit,
         formState: { errors },
-    } =useForm<FormValues>({
+    } = useForm<FormValues>({
         resolver: zodResolver(schema),
         defaultValues: {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-    }
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+        },
+        mode: "onBlur"
     })
 
     const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
@@ -25,28 +26,28 @@ const CustomForm = () =>{
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <InputForm
-                name= "name"
+                name="name"
                 control={control}
                 label="name"
                 type="text"
                 error={errors.name}
             />
             <InputForm
-                name= "email"
+                name="email"
                 control={control}
                 label="Email"
                 type="email"
                 error={errors.email}
             />
             <InputForm
-                name= "password"
+                name="password"
                 control={control}
                 label="Password"
                 type="password"
                 error={errors.password}
             />
             <InputForm
-                name= "confirmPassword"
+                name="confirmPassword"
                 control={control}
                 label="Confirm Password"
                 type="password"
